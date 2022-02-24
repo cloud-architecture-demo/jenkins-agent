@@ -23,11 +23,12 @@ RUN apt update                                   && \
     apt-get update && apt-get install -y adoptopenjdk-8-hotspot                                 && \
 
 ## Install GOlang
-    curl -O https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz && \
-    tar xvf go1.12.7.linux-amd64.tar.gz                          && \
-    chown -R root:root ./go                                      && \
-    mv go /usr/local                                             && \
-    rm go1.12.7.linux-amd64.tar.gz                               && \
+    GO_VERSION='1.17.7'                                                 && \
+    curl -O https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
+    tar xvf go${GO_VERSION}.linux-amd64.tar.gz                          && \
+    chown -R root:root ./go                                             && \
+    mv go /usr/local                                                    && \
+    rm go${GO_VERSION}.linux-amd64.tar.gz                               && \
 
 ## Install docker
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -                                     && \
@@ -52,7 +53,8 @@ RUN apt update                                   && \
     chmod +x /usr/local/bin/kubectl                                                                                                     && \
 
 ##  Clean apt cache to reduce image size
-    apt-get clean                   && \
+    apt-get install --reinstall ca-certificates     && \
+    apt-get clean                                   && \
     rm -rf /var/lib/apt/lists/*
 
 ## Configure Jenkins User
