@@ -20,10 +20,10 @@ RUN apt update                                   && \
 ## install openjdk8
     curl -fsSL https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -    && \
     add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/                    && \
-    apt-get update && apt-get install -y adoptopenjdk-8-hotspot                                 && \
+    apt-get update && apt-get install -y adoptopenjdk-11-hotspot                                && \
 
 ## Install GOlang
-    GO_VERSION='1.17.7'                                                 && \
+    GO_VERSION='1.18.10'                                                && \
     curl -O https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar xvf go${GO_VERSION}.linux-amd64.tar.gz                          && \
     chown -R root:root ./go                                             && \
@@ -49,7 +49,7 @@ RUN apt update                                   && \
     apt-get update && apt-get install google-cloud-sdk                                                                                                                          && \
 
 ## Install kubectl
-    wget --quiet -O /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kubectl    && \
+    wget --quiet -O /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.27.3/bin/linux/amd64/kubectl    && \
     chmod +x /usr/local/bin/kubectl                                                                                                     && \
 
 ##  Clean apt cache to reduce image size
