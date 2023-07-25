@@ -10,6 +10,7 @@ RUN apt update                                   && \
                    zip                              \
                    python3                          \
                    maven                            \
+                   awscli                           \
                    apt-transport-https              \
                    ca-certificates                  \
                    curl                             \
@@ -38,10 +39,10 @@ RUN apt update                                   && \
     usermod -aG docker jenkins                                                                                  && \
 
 ## Install AWS cli
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"       && \
-    unzip awscliv2.zip                                                                      && \
-    ./aws/install -i /usr/local/aws-cli -b /usr/local/bin/aws                               && \
-    rm awscliv2.zip                                                                         && \
+    #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"       && \
+    #unzip awscliv2.zip                                                                      && \
+    #./aws/install -i /usr/local/aws-cli -b /usr/local/bin/aws                               && \
+    #rm awscliv2.zip                                                                         && \
 
 ## Install GCP cli
     echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list     && \
